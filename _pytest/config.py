@@ -82,6 +82,12 @@ def get_config():
         pluginmanager.import_plugin(spec)
     return config
 
+def get_plugin_manager():
+    """deprecated, backward-compatibility for pytest < 2.8 (see #787)"""
+    warnings.warn('get_plugin_manager() is deprecated, use get_config().pluginmanager instead',
+                  DeprecationWarning, stacklevel=2)
+    return get_config().pluginmanager
+
 def _prepareconfig(args=None, plugins=None):
     if args is None:
         args = sys.argv[1:]
